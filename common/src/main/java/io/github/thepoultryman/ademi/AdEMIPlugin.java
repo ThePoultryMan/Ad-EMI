@@ -12,12 +12,10 @@ import net.minecraft.resources.ResourceLocation;
 
 @EmiEntrypoint
 public class AdEMIPlugin implements EmiPlugin {
-    public static final String MOD_ID = "ad_emi";
-
-    public static final ResourceLocation SPRITE_SHEET = new ResourceLocation(MOD_ID, "textures/gui/emi_sprite_sheet.png");
+    public static final ResourceLocation SPRITE_SHEET = new ResourceLocation(AdEMI.MOD_ID, "textures/gui/emi_sprite_sheet.png");
     public static final EmiStack OXYGEN_LOADER = EmiStack.of(ModBlocks.OXYGEN_LOADER.get());
     public static final EmiRecipeCategory OXYGEN_LOADER_CATEGORY =
-            new EmiRecipeCategory(new ResourceLocation(MOD_ID, "oxygen_loader"), OXYGEN_LOADER, new EmiTexture(SPRITE_SHEET, 0, 0, 16, 16));
+            new EmiRecipeCategory(new ResourceLocation(AdEMI.MOD_ID, "oxygen_loader"), OXYGEN_LOADER, new EmiTexture(SPRITE_SHEET, 0, 0, 16, 16));
 
     @Override
     public void initialize(EmiInitRegistry registry) {
