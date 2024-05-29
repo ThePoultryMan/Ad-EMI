@@ -21,6 +21,8 @@ dependencies {
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
+
+    modImplementation "earth.terrarium.adastra:ad_astra-fabric-${rootProject.minecraft_version}:${rootProject.ad_astra_version}"
 }
 
 processResources {
