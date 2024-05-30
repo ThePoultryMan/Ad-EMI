@@ -22,7 +22,7 @@ public class CustomTankWidget extends TankWidget {
         tooltip.set(
                 tooltip.size() - 2,
                 ClientTooltipComponent.create(FormattedCharSequence.forward(
-                        this.stack.getAmount() + " " + Component.translatable(AdEMI.MOD_ID + ".millibuckets").getString(), Style.EMPTY)
+                        Component.translatable(AdEMI.MOD_ID + ".millibuckets", this.stack.getAmount()).getString(), Style.EMPTY)
                 )
         );
         return tooltip;
