@@ -44,10 +44,10 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
                 0,
                 0
         );
-        widgets.add(new CustomTankWidget(this.inputFluid, 25, 2, 16, 54, 3000));
+        widgets.add(new CustomTankWidget(this.inputFluid, 26, 3, 14, 52, 3000));
         widgets.addText(Component.literal(String.valueOf(this.inputFluid.getAmount())), 42, 2, 0x000000, false);
 
-        widgets.add(new CustomTankWidget(this.outputFluid, 65, 2, 16, 54, 3000));
+        widgets.add(new CustomTankWidget(this.outputFluid, 66, 3, 14, 52, 3000));
 
         widgets.add(new CustomSlotWidget(this.inputBucket, 2, 6));
     }

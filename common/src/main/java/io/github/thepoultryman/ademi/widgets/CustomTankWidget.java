@@ -14,7 +14,7 @@ import java.util.List;
 public class CustomTankWidget extends TankWidget {
 
     public CustomTankWidget(EmiIngredient stack, int x, int y, int width, int height, long capacity) {
-        super(stack, x, y, width, height, capacity);
+        super(stack, x - 1, y - 1, width + 2, height + 2, capacity);
         this.drawBack(false);
     }
 
