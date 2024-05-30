@@ -2,6 +2,7 @@ package io.github.thepoultryman.ademi.recipes;
 
 import dev.emi.emi.api.recipe.BasicEmiRecipe;
 import dev.emi.emi.api.render.EmiTexture;
+import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
 import earth.terrarium.adastra.common.recipes.machines.OxygenLoadingRecipe;
@@ -12,12 +13,21 @@ import io.github.thepoultryman.ademi.widgets.CustomTankWidget;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
+import java.util.ArrayList;
+
 public class OxygenLoaderRecipe extends BasicEmiRecipe {
     private final EmiStack inputFluid;
+    private final EmiIngredient inputFluid;
 
     public OxygenLoaderRecipe(OxygenLoadingRecipe recipe) {
         super(AdEMIPlugin.OXYGEN_LOADER_CATEGORY, recipe.getId(), 127, 58);
         this.inputFluid = EmiStack.of(recipe.input().getFluids().get(0).getFluid(), FluidConstants.toMillibuckets(recipe.input().getFluidAmount()));
+
+        var fluids = new ArrayList<EmiStack>(1);
+        for (FluidHolder fluidHolder : recipe.input().getFluids()) {
+            fluids.add(EmiStack.of(fluidHolder.getFluid(), FluidConstants.toMillibuckets(recipe.input().getFluidAmount())));
+        }
+        this.inputFluid = EmiIngredient.of(fluids);
     }
 
     @Override
