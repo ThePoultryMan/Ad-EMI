@@ -7,7 +7,10 @@ import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.stack.EmiStack;
+import earth.terrarium.adastra.common.recipes.machines.OxygenLoadingRecipe;
 import earth.terrarium.adastra.common.registry.ModBlocks;
+import earth.terrarium.adastra.common.registry.ModRecipeTypes;
+import io.github.thepoultryman.ademi.recipes.OxygenLoaderRecipe;
 import net.minecraft.resources.ResourceLocation;
 
 @EmiEntrypoint
@@ -24,7 +27,12 @@ public class AdEMIPlugin implements EmiPlugin {
 
     @Override
     public void register(EmiRegistry registry) {
+        var recipeManager = registry.getRecipeManager();
+
         registry.addCategory(OXYGEN_LOADER_CATEGORY);
         registry.addWorkstation(OXYGEN_LOADER_CATEGORY, OXYGEN_LOADER);
+        for (OxygenLoadingRecipe recipe : recipeManager.getAllRecipesFor(ModRecipeTypes.OXYGEN_LOADING.get())) {
+            registry.addRecipe(new OxygenLoaderRecipe(recipe));
+        }
     }
 }
