@@ -21,7 +21,7 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
     private final EmiStack outputFluid;
 
     public OxygenLoaderRecipe(OxygenLoadingRecipe recipe) {
-        super(AdEMIPlugin.OXYGEN_LOADER_CATEGORY, recipe.getId(), 127, 58);
+        super(AdEMIPlugin.OXYGEN_LOADER_CATEGORY, recipe.getId(), 128, 58);
 
         var fluids = new ArrayList<EmiStack>(1);
         for (FluidHolder fluidHolder : recipe.input().getFluids()) {
@@ -35,7 +35,7 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
     @Override
     public void addWidgets(WidgetHolder widgets) {
         widgets.addTexture(
-                new EmiTexture(new ResourceLocation(AdEMI.MOD_ID, "textures/gui/oxygen_loader.png"), 0, 0, 127, 58, 127, 58, 156, 58),
+                new EmiTexture(new ResourceLocation(AdEMI.MOD_ID, "textures/gui/oxygen_loader.png"), 0, 0, 128, 58, 128, 58, 156, 58),
                 0,
                 0
         );
