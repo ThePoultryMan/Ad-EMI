@@ -5,14 +5,15 @@ import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
 import earth.terrarium.adastra.common.recipes.machines.OxygenLoadingRecipe;
-import earth.terrarium.botarium.common.fluid.utils.QuantifiedFluidIngredient;
+import earth.terrarium.botarium.common.fluid.FluidConstants;
 import io.github.thepoultryman.ademi.AdEMI;
 import io.github.thepoultryman.ademi.AdEMIPlugin;
 import io.github.thepoultryman.ademi.widgets.CustomTankWidget;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
 public class OxygenLoaderRecipe extends BasicEmiRecipe {
-    private final QuantifiedFluidIngredient inputFluid;
+    private final EmiStack inputFluid;
 
     public OxygenLoaderRecipe(OxygenLoadingRecipe recipe) {
         super(AdEMIPlugin.OXYGEN_LOADER_CATEGORY, recipe.getId(), 127, 58);
@@ -26,7 +27,7 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
                 0,
                 0
         );
-        var water = EmiStack.of(this.inputFluid.getFluids().get(0).getFluid(), 100);
-        widgets.add(new CustomTankWidget(water, 151, 22, 10, 45, 1000));
+        widgets.add(new CustomTankWidget(this.inputFluid, 25, 2, 16, 54, 3000));
+        widgets.addText(Component.literal(String.valueOf(this.inputFluid.getAmount())), 42, 2, 0x000000, false);
     }
 }
