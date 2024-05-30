@@ -15,14 +15,14 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
     private final QuantifiedFluidIngredient inputFluid;
 
     public OxygenLoaderRecipe(OxygenLoadingRecipe recipe) {
-        super(AdEMIPlugin.OXYGEN_LOADER_CATEGORY, recipe.getId(), 164, 82);
-        this.inputFluid = recipe.input();
+        super(AdEMIPlugin.OXYGEN_LOADER_CATEGORY, recipe.getId(), 127, 58);
+        this.inputFluid = EmiStack.of(recipe.input().getFluids().get(0).getFluid(), FluidConstants.toMillibuckets(recipe.input().getFluidAmount()));
     }
 
     @Override
     public void addWidgets(WidgetHolder widgets) {
         widgets.addTexture(
-                new EmiTexture(new ResourceLocation(AdEMI.AD_ASTRA_MOD_ID, "textures/gui/container/oxygen_loader.png"), 9, 3, 164, 82),
+                new EmiTexture(new ResourceLocation(AdEMI.MOD_ID, "textures/gui/oxygen_loader.png"), 0, 0, 127, 58, 127, 58, 156, 58),
                 0,
                 0
         );
