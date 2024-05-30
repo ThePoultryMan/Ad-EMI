@@ -7,6 +7,7 @@ import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
 import earth.terrarium.adastra.common.recipes.machines.OxygenLoadingRecipe;
 import earth.terrarium.botarium.common.fluid.FluidConstants;
+import earth.terrarium.botarium.common.fluid.base.FluidHolder;
 import io.github.thepoultryman.ademi.AdEMI;
 import io.github.thepoultryman.ademi.AdEMIPlugin;
 import io.github.thepoultryman.ademi.widgets.CustomTankWidget;
@@ -16,18 +17,19 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.ArrayList;
 
 public class OxygenLoaderRecipe extends BasicEmiRecipe {
-    private final EmiStack inputFluid;
     private final EmiIngredient inputFluid;
+    private final EmiStack outputFluid;
 
     public OxygenLoaderRecipe(OxygenLoadingRecipe recipe) {
         super(AdEMIPlugin.OXYGEN_LOADER_CATEGORY, recipe.getId(), 127, 58);
-        this.inputFluid = EmiStack.of(recipe.input().getFluids().get(0).getFluid(), FluidConstants.toMillibuckets(recipe.input().getFluidAmount()));
 
         var fluids = new ArrayList<EmiStack>(1);
         for (FluidHolder fluidHolder : recipe.input().getFluids()) {
             fluids.add(EmiStack.of(fluidHolder.getFluid(), FluidConstants.toMillibuckets(recipe.input().getFluidAmount())));
         }
         this.inputFluid = EmiIngredient.of(fluids);
+
+        this.outputFluid = EmiStack.of(recipe.result().getFluid(), FluidConstants.toMillibuckets(recipe.result().getFluidAmount()));
     }
 
     @Override
@@ -39,5 +41,7 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
         );
         widgets.add(new CustomTankWidget(this.inputFluid, 25, 2, 16, 54, 3000));
         widgets.addText(Component.literal(String.valueOf(this.inputFluid.getAmount())), 42, 2, 0x000000, false);
+
+        widgets.add(new CustomTankWidget(this.outputFluid, 65, 2, 16, 54, 3000));
     }
 }
