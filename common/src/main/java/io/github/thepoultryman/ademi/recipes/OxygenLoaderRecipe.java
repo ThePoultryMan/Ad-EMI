@@ -14,7 +14,6 @@ import io.github.thepoultryman.ademi.BucketRecipeToggle;
 import io.github.thepoultryman.ademi.widgets.ConditionalTextureWidget;
 import io.github.thepoultryman.ademi.widgets.CustomSlotWidget;
 import io.github.thepoultryman.ademi.widgets.CustomTankWidget;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 
@@ -67,7 +66,6 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
                 0, 0
         );
         widgets.add(new CustomTankWidget(this.inputFluid, 27, 3, 14, 52, 3000));
-        widgets.addText(Component.literal(String.valueOf(this.inputFluid.getAmount())), 42, 2, 0x000000, false);
 
         widgets.add(new CustomTankWidget(this.outputFluid, 65, 3, 14, 52, 3000));
 
