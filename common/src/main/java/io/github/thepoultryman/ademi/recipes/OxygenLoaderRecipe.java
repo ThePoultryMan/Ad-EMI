@@ -37,6 +37,17 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
         this.inputBucket = EmiIngredient.of(buckets);
 
         this.outputFluid = EmiStack.of(recipe.result().getFluid(), FluidConstants.toMillibuckets(recipe.result().getFluidAmount()));
+
+        this.bucketRecipe.onClick(() -> {
+            if (this.bucketRecipe.useBucketRecipe()) {
+                long recipeMultiplier = 1000 / this.inputFluid.getAmount();
+                this.inputFluid.setAmount(this.inputFluid.getAmount() * recipeMultiplier);
+                this.outputFluid.setAmount(this.outputFluid.getAmount() * recipeMultiplier);
+            } else {
+                this.inputFluid.setAmount(FluidConstants.toMillibuckets(recipe.input().getFluidAmount()));
+                this.outputFluid.setAmount(FluidConstants.toMillibuckets(recipe.result().getFluidAmount()));
+            }
+        });
     }
 
     @Override
