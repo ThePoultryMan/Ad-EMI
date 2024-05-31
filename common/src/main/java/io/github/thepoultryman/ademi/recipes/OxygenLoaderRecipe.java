@@ -16,6 +16,7 @@ import io.github.thepoultryman.ademi.widgets.CustomSlotWidget;
 import io.github.thepoultryman.ademi.widgets.CustomTankWidget;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 
 import java.util.ArrayList;
 
@@ -31,8 +32,15 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
         var fluids = new ArrayList<EmiStack>(1);
         var buckets = new ArrayList<EmiStack>(1);
         for (FluidHolder fluidHolder : recipe.input().getFluids()) {
-            buckets.add(EmiStack.of(fluidHolder.getFluid().getBucket()));
-            fluids.add(EmiStack.of(fluidHolder.getFluid(), FluidConstants.toMillibuckets(recipe.input().getFluidAmount())));
+            EmiStack fluid = EmiStack.of(fluidHolder.getFluid(), FluidConstants.toMillibuckets(recipe.input().getFluidAmount()));
+            if (fluids.contains(fluid)) continue;
+            Item bucket = fluidHolder.getFluid().getBucket();
+            if (bucket.getCraftingRemainingItem() != null) {
+                buckets.add(EmiStack.of(bucket).setRemainder(EmiStack.of(bucket.getCraftingRemainingItem())));
+            } else {
+                buckets.add(EmiStack.of(bucket));
+            }
+            fluids.add(fluid);
         }
         this.inputFluid = EmiIngredient.of(fluids);
         this.inputBucket = EmiIngredient.of(buckets);
