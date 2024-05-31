@@ -11,9 +11,11 @@ import earth.terrarium.botarium.common.fluid.base.FluidHolder;
 import io.github.thepoultryman.ademi.AdEMI;
 import io.github.thepoultryman.ademi.AdEMIPlugin;
 import io.github.thepoultryman.ademi.BucketRecipeToggle;
+import io.github.thepoultryman.ademi.widgets.ConditionalTextWidget;
 import io.github.thepoultryman.ademi.widgets.ConditionalTextureWidget;
 import io.github.thepoultryman.ademi.widgets.CustomSlotWidget;
 import io.github.thepoultryman.ademi.widgets.CustomTankWidget;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 
@@ -22,6 +24,8 @@ import java.util.ArrayList;
 public class OxygenLoaderRecipe extends BasicEmiRecipe {
     private final EmiIngredient inputFluid;
     private final EmiIngredient inputBucket;
+    private final int energy;
+    private final int bucketAmountEnergy;
     private final EmiStack outputFluid;
     private final BucketRecipeToggle bucketRecipe = new BucketRecipeToggle();
 
@@ -41,14 +45,18 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
             }
             fluids.add(fluid);
         }
+
+
         this.inputFluid = EmiIngredient.of(fluids);
+        long recipeMultiplier = 1000 / this.inputFluid.getAmount();
         this.inputBucket = EmiIngredient.of(buckets);
+        this.energy = recipe.energy();
+        this.bucketAmountEnergy = (int) (recipe.energy() * recipeMultiplier);
 
         this.outputFluid = EmiStack.of(recipe.result().getFluid(), FluidConstants.toMillibuckets(recipe.result().getFluidAmount()));
 
         this.bucketRecipe.onClick(() -> {
             if (this.bucketRecipe.useBucketRecipe()) {
-                long recipeMultiplier = 1000 / this.inputFluid.getAmount();
                 this.inputFluid.setAmount(this.inputFluid.getAmount() * recipeMultiplier);
                 this.outputFluid.setAmount(this.outputFluid.getAmount() * recipeMultiplier);
             } else {
@@ -76,6 +84,9 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
                 () -> !this.bucketRecipe.useBucketRecipe()));
         widgets.add(new CustomSlotWidget(this.inputBucket, 2, 6, this.bucketRecipe::useBucketRecipe));
         widgets.addTexture(bucketOutlineTexture, 90, 7);
+
+        widgets.add(new ConditionalTextWidget(Component.literal("⚡" + this.energy), 87, 26, 0xFFFFFF, true, () -> !this.bucketRecipe.useBucketRecipe()));
+        widgets.add(new ConditionalTextWidget(Component.literal("⚡" + this.bucketAmountEnergy), 87, 26, 0xFFFFFF, true, this.bucketRecipe::useBucketRecipe));
 
         widgets.addButton(47, 39, 12, 12, 0, 0, new ResourceLocation(AdEMI.MOD_ID, "textures/gui/bucket_recipe.png"), () -> true, this.bucketRecipe);
     }
