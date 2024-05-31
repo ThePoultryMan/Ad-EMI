@@ -15,6 +15,7 @@ import io.github.thepoultryman.ademi.widgets.ConditionalTextWidget;
 import io.github.thepoultryman.ademi.widgets.ConditionalTextureWidget;
 import io.github.thepoultryman.ademi.widgets.CustomSlotWidget;
 import io.github.thepoultryman.ademi.widgets.CustomTankWidget;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -30,7 +31,7 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
     private final BucketRecipeToggle bucketRecipe = new BucketRecipeToggle();
 
     public OxygenLoaderRecipe(OxygenLoadingRecipe recipe) {
-        super(AdEMIPlugin.OXYGEN_LOADER_CATEGORY, recipe.getId(), 128, 58);
+        super(AdEMIPlugin.OXYGEN_LOADER_CATEGORY, recipe.getId(), 121, 58);
 
         var fluids = new ArrayList<EmiStack>(1);
         var buckets = new ArrayList<EmiStack>(1);
@@ -70,7 +71,7 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
     public void addWidgets(WidgetHolder widgets) {
         widgets.addTexture(
                 new EmiTexture(new ResourceLocation(AdEMI.MOD_ID, "textures/gui/oxygen_loader.png"),
-                        0, 0, 128, 58, 128, 58, 156, 58),
+                        0, 0, 121, 58, 121, 58, 156, 58),
                 0, 0
         );
         widgets.add(new CustomTankWidget(this.inputFluid, 27, 3, 14, 52, 3000));
@@ -85,8 +86,12 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
         widgets.add(new CustomSlotWidget(this.inputBucket, 2, 10, this.bucketRecipe::useBucketRecipe));
         widgets.addTexture(bucketOutlineTexture, 90, 11);
 
-        widgets.add(new ConditionalTextWidget(Component.literal("⚡" + this.energy), 87, 26, 0xFFFFFF, true, () -> !this.bucketRecipe.useBucketRecipe()));
-        widgets.add(new ConditionalTextWidget(Component.literal("⚡" + this.bucketAmountEnergy), 87, 26, 0xFFFFFF, true, this.bucketRecipe::useBucketRecipe));
+        widgets.add(new ConditionalTextWidget(Component.literal("⚡" + this.energy),
+                120 - Minecraft.getInstance().font.width("⚡" + this.energy),
+                45, 0xFFFFFF, true, () -> !this.bucketRecipe.useBucketRecipe()));
+        widgets.add(new ConditionalTextWidget(Component.literal("⚡" + this.bucketAmountEnergy),
+                120 - Minecraft.getInstance().font.width("⚡" + this.bucketAmountEnergy),
+                45, 0xFFFFFF, true, this.bucketRecipe::useBucketRecipe));
 
         widgets.addButton(47, 39, 12, 12, 0, 0, new ResourceLocation(AdEMI.MOD_ID, "textures/gui/bucket_recipe.png"), () -> true, this.bucketRecipe);
     }
