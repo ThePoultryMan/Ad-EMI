@@ -66,10 +66,10 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
                         0, 0, 128, 58, 128, 58, 156, 58),
                 0, 0
         );
-        widgets.add(new CustomTankWidget(this.inputFluid, 26, 3, 14, 52, 3000));
+        widgets.add(new CustomTankWidget(this.inputFluid, 27, 3, 14, 52, 3000));
         widgets.addText(Component.literal(String.valueOf(this.inputFluid.getAmount())), 42, 2, 0x000000, false);
 
-        widgets.add(new CustomTankWidget(this.outputFluid, 66, 3, 14, 52, 3000));
+        widgets.add(new CustomTankWidget(this.outputFluid, 65, 3, 14, 52, 3000));
 
         EmiTexture bucketOutlineTexture = new EmiTexture(new ResourceLocation(AdEMI.MOD_ID, "textures/gui/oxygen_loader.png"),
                 142, 0, 12, 14, 12, 14, 156, 58);
