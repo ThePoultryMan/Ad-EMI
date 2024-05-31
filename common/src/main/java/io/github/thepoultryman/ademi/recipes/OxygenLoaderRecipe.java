@@ -93,6 +93,6 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
                 120 - Minecraft.getInstance().font.width("⚡" + this.bucketAmountEnergy),
                 45, 0xFFFFFF, true, this.bucketRecipe::useBucketRecipe));
 
-        widgets.addButton(47, 39, 12, 12, 0, 0, new ResourceLocation(AdEMI.MOD_ID, "textures/gui/bucket_recipe.png"), () -> true, this.bucketRecipe);
+        widgets.addButton(47, 39, 12, 12, 0, 0, new ResourceLocation(AdEMI.MOD_ID, "textures/gui/widgets.png"), () -> true, this.bucketRecipe);
     }
 }
