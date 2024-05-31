@@ -1,16 +1,16 @@
 package io.github.thepoultryman.ademi.widgets;
 
+import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.widget.TextureWidget;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.BooleanSupplier;
 
 public class ConditionalTextureWidget extends TextureWidget {
     private final BooleanSupplier condition;
 
-    public ConditionalTextureWidget(ResourceLocation texture, int x, int y, int width, int height, int u, int v, int regionWidth, int regionHeight, int textureWidth, int textureHeight, BooleanSupplier condition) {
-        super(texture, x, y, width, height, u, v, regionWidth, regionHeight, textureWidth, textureHeight);
+    public ConditionalTextureWidget(EmiTexture texture, int x, int y, BooleanSupplier condition) {
+        super(texture.texture, x, y, texture.width, texture.height, texture.u, texture.v, texture.regionWidth, texture.regionHeight, texture.textureWidth, texture.textureHeight);
         this.condition = condition;
     }
 
