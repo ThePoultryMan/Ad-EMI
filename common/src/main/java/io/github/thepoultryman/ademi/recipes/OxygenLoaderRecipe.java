@@ -10,6 +10,7 @@ import earth.terrarium.botarium.common.fluid.FluidConstants;
 import earth.terrarium.botarium.common.fluid.base.FluidHolder;
 import io.github.thepoultryman.ademi.AdEMI;
 import io.github.thepoultryman.ademi.AdEMIPlugin;
+import io.github.thepoultryman.ademi.BucketRecipeToggle;
 import io.github.thepoultryman.ademi.widgets.CustomSlotWidget;
 import io.github.thepoultryman.ademi.widgets.CustomTankWidget;
 import net.minecraft.network.chat.Component;
@@ -21,6 +22,7 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
     private final EmiIngredient inputFluid;
     private final EmiIngredient inputBucket;
     private final EmiStack outputFluid;
+    private final BucketRecipeToggle bucketRecipe = new BucketRecipeToggle();
 
     public OxygenLoaderRecipe(OxygenLoadingRecipe recipe) {
         super(AdEMIPlugin.OXYGEN_LOADER_CATEGORY, recipe.getId(), 128, 58);
@@ -49,6 +51,8 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
 
         widgets.add(new CustomTankWidget(this.outputFluid, 66, 3, 14, 52, 3000));
 
-        widgets.add(new CustomSlotWidget(this.inputBucket, 2, 6));
+        widgets.add(new CustomSlotWidget(this.inputBucket, 2, 6, this.bucketRecipe::useBucketRecipe));
+
+        widgets.addButton(47, 38, 12, 12, 0, 0, new ResourceLocation(AdEMI.MOD_ID, "textures/gui/bucket_recipe.png"), () -> true, this.bucketRecipe);
     }
 }
