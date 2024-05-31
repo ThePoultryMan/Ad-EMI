@@ -66,8 +66,8 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
         widgets.add(new ConditionalTextureWidget(
                 new ResourceLocation(AdEMI.MOD_ID, "textures/gui/oxygen_loader.png"),
                 4, 7, 12, 14, 142, 0, 12, 14, 156, 58,
-                this.bucketRecipe::useBucketRecipe));
-        widgets.add(new CustomSlotWidget(this.inputBucket, 2, 6, () -> !this.bucketRecipe.useBucketRecipe()));
+                () -> !this.bucketRecipe.useBucketRecipe()));
+        widgets.add(new CustomSlotWidget(this.inputBucket, 2, 6, this.bucketRecipe::useBucketRecipe));
 
         widgets.addButton(47, 38, 12, 12, 0, 0, new ResourceLocation(AdEMI.MOD_ID, "textures/gui/bucket_recipe.png"), () -> true, this.bucketRecipe);
     }
