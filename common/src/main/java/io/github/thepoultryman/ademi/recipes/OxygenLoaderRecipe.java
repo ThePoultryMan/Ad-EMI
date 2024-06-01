@@ -11,13 +11,13 @@ import earth.terrarium.botarium.common.fluid.base.FluidHolder;
 import io.github.thepoultryman.ademi.AdEMI;
 import io.github.thepoultryman.ademi.AdEMIPlugin;
 import io.github.thepoultryman.ademi.BucketRecipeToggle;
-import io.github.thepoultryman.ademi.widgets.ConditionalTextWidget;
-import io.github.thepoultryman.ademi.widgets.ConditionalTextureWidget;
-import io.github.thepoultryman.ademi.widgets.CustomSlotWidget;
-import io.github.thepoultryman.ademi.widgets.CustomTankWidget;
+import io.github.thepoultryman.ademi.widgets.*;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.item.Item;
 
 import java.util.ArrayList;
@@ -98,6 +98,12 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
                 120 - Minecraft.getInstance().font.width("⚡" + this.bucketAmountEnergy),
                 45, 0xFFFFFF, true, this.bucketRecipe::useBucketRecipe));
 
+        widgets.add(new TooltippedButtonWidget(
+                47, 39, 12, 12, 0, 0,
+                new ResourceLocation(AdEMI.MOD_ID, "textures/gui/widgets.png"),
+                () -> true, this.bucketRecipe,
+                ClientTooltipComponent.create(FormattedCharSequence.forward(
+                        Component.translatable("ad_emi.toggle_bucket_recipe").getString(), Style.EMPTY))));
         widgets.addButton(47, 39, 12, 12, 0, 0, new ResourceLocation(AdEMI.MOD_ID, "textures/gui/widgets.png"), () -> true, this.bucketRecipe);
     }
 }

@@ -1,4 +1,5 @@
 {
     "ad_emi.millibuckets": "%dmb",
+    "ad_emi.toggle_bucket_recipe": "Toggle Bucket Recipe",
     "emi.category.ad_emi.oxygen_loader": "Oxygen Loading"
 }
