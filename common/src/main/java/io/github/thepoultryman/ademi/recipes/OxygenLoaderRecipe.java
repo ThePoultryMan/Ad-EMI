@@ -21,6 +21,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OxygenLoaderRecipe extends BasicEmiRecipe {
     private final EmiIngredient inputFluid;
@@ -65,6 +66,10 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
                 this.outputFluid.setAmount(FluidConstants.toMillibuckets(recipe.result().getFluidAmount()));
             }
         });
+
+        // EMI
+        this.inputs = List.of(this.inputBucket, this.inputFluid);
+        this.outputs = List.of(this.outputFluid);
     }
 
     @Override
