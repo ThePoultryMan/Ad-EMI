@@ -68,7 +68,7 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
         });
 
         // EMI
-        this.inputs = List.of(this.inputBucket, this.inputFluid);
+        this.inputs = List.of(this.inputFluid);
         this.outputs = List.of(this.outputFluid);
     }
 
