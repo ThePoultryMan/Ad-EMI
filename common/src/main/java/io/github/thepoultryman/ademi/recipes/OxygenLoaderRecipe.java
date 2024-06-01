@@ -71,15 +71,15 @@ public class OxygenLoaderRecipe extends BasicEmiRecipe {
     public void addWidgets(WidgetHolder widgets) {
         widgets.addTexture(
                 new EmiTexture(new ResourceLocation(AdEMI.MOD_ID, "textures/gui/oxygen_loader.png"),
-                        0, 0, 121, 58, 121, 58, 156, 58),
+                        0, 0, 121, 58, 121, 58, 122, 58),
                 0, 0
         );
         widgets.add(new CustomTankWidget(this.inputFluid, 27, 3, 14, 52, 3000));
 
         widgets.add(new CustomTankWidget(this.outputFluid, 65, 3, 14, 52, 3000));
 
-        EmiTexture bucketOutlineTexture = new EmiTexture(new ResourceLocation(AdEMI.MOD_ID, "textures/gui/oxygen_loader.png"),
-                142, 0, 12, 14, 12, 14, 156, 58);
+        EmiTexture bucketOutlineTexture = new EmiTexture(new ResourceLocation(AdEMI.MOD_ID, "textures/gui/widgets.png"),
+                12, 0, 12, 14, 12, 14, 256, 256);
         widgets.add(new ConditionalTextureWidget(
                 bucketOutlineTexture, 4, 11,
                 () -> !this.bucketRecipe.useBucketRecipe()));
